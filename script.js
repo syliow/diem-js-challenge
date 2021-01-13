@@ -32,20 +32,32 @@ birthDate.addEventListener("focus", () => {
 });
 
 // Text displayed when user places cursor outside of Birthday field
-birthDate.addEventListener("blur", () => {
+birthDate.addEventListener("blur", (birth_date) => {
 
     var birthday = document.getElementById("date").value;
-    var formatted_date = birthday.split("-");
-    let user_BirthYear = formatted_date[0];
-    var curr_date = new Date();
-    var curr_year = curr_date.getFullYear();
-
-    var user_Age = curr_year - user_BirthYear;
-
+    
     if (birthday === '') {
         userAge.innerText = "Would you mind entering your birthday?";
     } else {
-        userAge.innerText = "Your age is " + user_Age + "!";
+        
+    var date_split = birth_date.target.value.split("-");
+    var date = new Date();
+    var day = date.getDay();
+    var month = date.getMonth ();
+    var year = date.getFullYear();
+    var age;
+        
+    if((year > date_split[0]) && (month < date_split [1]) ){
+        age = year - date_split [0]-1;
+
+    }else if ((month == date_split [1]) && day < date_split[2]){
+        age = year - date_split -1;
+
+    }else {
+        age = year - date_split[0];
+    }
+        userAge.innerText = "Your age is " + age + "!";
+    
     }
 });
 
