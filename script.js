@@ -40,26 +40,32 @@ birthDate.addEventListener("blur", (birth_date) => {
         userAge.innerText = "Would you mind entering your birthday?";
     } else {
         
-    var date_split = birth_date.target.value.split("-");
-    var date = new Date();
-    var day = date.getDay();
-    var month = date.getMonth () + 1;
-    var year = date.getFullYear();
-    var age;
+        var dob_split = birth_date.target.value.split("-");
+        var dateObj = new Date();
+        var day = dateObj.getDate();
+        var month = dateObj.getMonth() + 1; 
+        var year = dateObj.getFullYear();
+        var age;
+
+        if (year > dob_split[0]){
+            if (month < dob_split[1]){
+                age= year - dob_split[0] - 1;
+            } else if (month == dob_split[1]){
+                if (day < dob_split[2]){
+                age= year - dob_split[0] - 1;
+                } else {
+                  age= year - dob_split[0];
+                }
+            } else {
+                age= year - dob_split[0];
+              }
         
-    if((year > date_split[0]) && (month < date_split [1]) ){
-        age = year - date_split [0]-1;
-
-    }else if ((month == date_split [1]) && day < date_split[2]){
-        age = year - date_split -1;
-
-    }else {
-        age = year - date_split[0];
     }
         userAge.innerText = "Your age is " + age + "!";
     
     }
 });
+
 
 //Toggle Light / Dark Mode
 
