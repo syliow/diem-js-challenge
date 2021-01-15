@@ -43,7 +43,7 @@ birthDate.addEventListener("blur", (birth_date) => {
     var date_split = birth_date.target.value.split("-");
     var date = new Date();
     var day = date.getDay();
-    var month = date.getMonth ();
+    var month = date.getMonth () + 1;
     var year = date.getFullYear();
     var age;
         
